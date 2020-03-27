@@ -12,6 +12,9 @@ name: OpenWrt-CI
 on:
   schedule:
     - cron: 0 20 * * *
+  push:
+    branches: 
+      - master
 
 jobs:
 
@@ -49,6 +52,12 @@ jobs:
 
           df -h
 
+      - name: 同步最新的源码
+        run: |
+          git remote add openwrt https://github.com/coolsnowwolf/lede.git
+          git pull openwrt master
+          git remote -v
+          
       - name: Update feeds
         run: |
           ./scripts/feeds update -a
