@@ -51,6 +51,11 @@ jobs:
           # ln -s /mnt/openwrt/staging_dir ./staging_dir
 
           df -h
+          
+      - name: Set git identity
+        run : |
+          git config --global user.email "changjun@gmail.com"
+          git config --global user.name "changjun"
 
       - name: 同步最新的源码
         run: |
